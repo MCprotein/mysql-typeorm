@@ -14,7 +14,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "strictPropertyInitialization": false,
+    "strictPropertyInitialization": false, // Property 'id' has no initializer and is not definitely assigned in the constructor. 에러 대응
     "skipLibCheck": true
   }
 }

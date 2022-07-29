@@ -10,7 +10,7 @@ const ormconfig: ConnectionOptions = {
   database: process.env.DB_DATABASENAME,
   synchronize: true,
   logging: false,
-  entities: ['dist/entity/**/*.js'],
+  entities: ['dist/entity/**/*.entity{.ts, .js}'],
   migrations: ['src/migration/**/*.ts'],
   subscribers: ['src/subscriber/**/*.ts'],
   // 에러
