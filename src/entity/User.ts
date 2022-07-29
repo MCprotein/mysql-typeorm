@@ -12,14 +12,11 @@ export class User {
   email: string;
 
   @Column()
-  password1: string;
+  password: string;
 
-  @Column()
-  password2: string;
+  //   @Column({ default: true })
+  //   isActivated: boolean = false;
 
-  @Column()
-  isActivated: boolean;
-
-  @Column()
-  role: string;
+  //   @Column({ default: true })
+  //   role: string = 'user';
 }

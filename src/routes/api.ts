@@ -1,5 +1,6 @@
-import { Router } from 'express';
+// import { Router } from 'express';
+// import { userRouter } from './api/api.index';
 
-const apiRouter = Router();
-
-export { apiRouter };
+// const apiRouter = Router();
+// apiRouter.use('/users', userRouter);
+// export { apiRouter };

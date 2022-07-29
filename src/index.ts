@@ -2,7 +2,7 @@ import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import 'dotenv/config';
-import { apiRouter } from './routes';
+// import { apiRouter } from './routes/routes.index';
 
 const app = express();
 
@@ -24,6 +24,6 @@ app.use(
   )
 );
 
-app.use('/api', apiRouter);
+// app.use('/api', apiRouter);
 
 export default app;
