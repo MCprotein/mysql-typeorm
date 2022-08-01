@@ -3,10 +3,7 @@ import { getRepository } from 'typeorm';
 import { User2 } from '../entity/User';
 
 class UserService {
-  //   userModel: UserModel;
-  constructor() {
-    // this.userModel = userModel;
-  }
+  constructor() {}
   async create(body: Request['body']): Promise<any> {
     const { username, email, password1, password2 } = body;
     console.log(username);
