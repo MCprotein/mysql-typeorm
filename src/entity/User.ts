@@ -6,20 +6,20 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ type: 'varchar', nullable: false })
   @Length(2, 6)
   username: string;
 
-  @Column()
+  @Column({ type: 'varchar', nullable: false })
   email: string;
 
-  @Column()
+  @Column({ type: 'varchar', nullable: false })
   @Length(8, 16)
   password: string;
 
-  @Column()
+  @Column({ type: 'boolean', nullable: false })
   isActivated: boolean = false;
 
-  @Column()
+  @Column({ type: 'varchar', nullable: false })
   role: string = 'user';
 }

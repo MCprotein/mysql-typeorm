@@ -1,6 +1,5 @@
 import { validate } from 'class-validator';
-import { Request } from 'express';
-import { getRepository } from 'typeorm';
+import { getRepository, Repository } from 'typeorm';
 import { User } from '../entity/User';
 
 interface UserInfo {
@@ -9,9 +8,24 @@ interface UserInfo {
   password1: string;
   password2: string;
 }
+
 class UserService {
+  // repository: Repository<User>;
   constructor() {}
-  async create(userInfo: UserInfo): Promise<any> {
+
+  async getUsers(): Promise<User[]> {
+    const userRepository = getRepository(User);
+    const users = await userRepository.find();
+    return users;
+  }
+
+  async getUserById(userId: number): Promise<User | null> {
+    const userRepository = getRepository(User);
+    const user = userRepository.findOneBy({ id: userId });
+    return user;
+  }
+
+  async create(userInfo: UserInfo): Promise<User> {
     const { username, email, password1, password2 } = userInfo;
 
     if (password1 !== password2) {
@@ -33,6 +47,26 @@ class UserService {
       const userRepository = getRepository(User);
       const createdUser = await userRepository.save(user);
       return createdUser;
+    }
+  }
+
+  async update(
+    userId: number,
+    updateInfo: Partial<UserInfo>
+  ): Promise<User | null> {
+    const userRepository = getRepository(User);
+    await userRepository.update({ id: userId }, updateInfo);
+    const updatedUser = await userRepository.findOneBy({ id: userId });
+    return updatedUser;
+  }
+
+  async delete(userId: number): Promise<void> {
+    const userRepository = getRepository(User);
+    const deletedUSer = await userRepository.delete({ id: userId });
+    // delete return 값 -> DeleteResult {raw : [], affected : 1}
+    // delete가 성공할 경우 affected의 값이 1로 옮
+    if (deletedUSer.affected === 0) {
+      throw new Error(`${userId} 유저가 없다.`);
     }
   }
 }
