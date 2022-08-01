@@ -1,7 +1,7 @@
-// import { NextFunction, Request, Response, Router } from 'express';
-// import { userService } from '../../services/service.index';
+import { NextFunction, Request, Response, Router } from 'express';
+import { userService } from '../../services/service.index';
 
-// const userRouter = Router();
+const userRouter = Router();
 
 // userRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {
 //   try {
@@ -25,17 +25,17 @@
 //   }
 // );
 
-// userRouter.post(
-//   '/',
-//   async (req: Request, res: Response, next: NextFunction) => {
-//     try {
-//       const createdUser = await userService.create(req.body);
-//       res.status(200).json(createdUser);
-//     } catch (error) {
-//       next(error);
-//     }
-//   }
-// );
+userRouter.post(
+  '/',
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const createdUser = await userService.create(req.body);
+      res.status(200).json(createdUser);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 // userRouter.put(
 //   '/:userId',
@@ -63,4 +63,4 @@
 //   }
 // );
 
-// export { userRouter };
+export { userRouter };
