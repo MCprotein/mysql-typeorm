@@ -29,7 +29,9 @@ userRouter.post(
   '/',
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const createdUser = await userService.create(req.body);
+      const { username, email, password1, password2 } = req.body;
+      const userInfo = { username, email, password1, password2 };
+      const createdUser = await userService.create(userInfo);
       res.status(200).json(createdUser);
     } catch (error) {
       next(error);
