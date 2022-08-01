@@ -1,22 +1,25 @@
+import { Length, Max, Min } from 'class-validator';
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
-export class User2 {
+export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
+  @Length(2, 6)
   username: string;
 
   @Column()
   email: string;
 
   @Column()
+  @Length(8, 16)
   password: string;
 
-  //   @Column({ default: true })
-  //   isActivated: boolean = false;
+  @Column()
+  isActivated: boolean = false;
 
-  //   @Column({ default: true })
-  //   role: string = 'user';
+  @Column()
+  role: string = 'user';
 }

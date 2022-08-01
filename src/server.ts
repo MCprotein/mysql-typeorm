@@ -10,10 +10,10 @@ if (process.env.NODE_ENV !== 'test') {
     .then(async (connection: DataSource) => {
       console.log('정상적으로 Mysql 서버에 연결되었습니다.');
       await userService.create({
-        username: '짱구',
+        username: '봉미선',
         email: 'abcd@test.com',
-        password1: '1234',
-        password2: '1234',
+        password1: '12345678',
+        password2: '12345678',
       });
       const server = app.listen(PORT, () =>
         console.log(`server is running ${PORT}`)
