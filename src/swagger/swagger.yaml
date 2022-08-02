@@ -35,8 +35,6 @@ paths:
           content:
             application/json:
               schema:
-                # $ref: './components/responses/user.yaml#/getUsers'
-                $ref: '#/userres.yaml#/getUsers'
+                $ref: './components/responses/user.yaml#/getUsers'
               examples:
-                # $ref: './components/examples/user.yaml#/getUsers'
-                $ref: '#/userex.yaml#/getUsers'
+                $ref: './components/examples/user.yaml#/getUsers'

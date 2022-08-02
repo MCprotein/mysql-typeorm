@@ -30,6 +30,7 @@
   "scripts": {
     "start": "ts-node src/server.ts",
     "start:dev": "ts-node-dev src/server.ts",
-    "typeorm": "typeorm-ts-node-commonjs"
+    "typeorm": "typeorm-ts-node-commonjs",
+    "api-docs": "swagger-cli bundle ./src/swagger/swagger.yaml --outfile build/swagger.yaml --type yaml"
   }
 }
