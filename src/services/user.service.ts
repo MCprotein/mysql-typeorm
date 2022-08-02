@@ -33,19 +33,15 @@ class UserService {
       error.name = 'BadRequest';
       throw error;
     }
-
-    const user = new User();
-    user.username = username;
-    user.email = email;
-    user.password = password1;
-
-    const errors = await validate(user);
+    const userRepository = getRepository(User);
+    const newUserInfo = { username, email, password: password1 };
+    const newUser = userRepository.create(newUserInfo);
+    const errors = await validate(newUser);
     if (errors.length > 0) {
       console.log(errors);
       throw new Error('Validation failed!');
     } else {
-      const userRepository = getRepository(User);
-      const createdUser = await userRepository.save(user);
+      const createdUser = await userRepository.save(newUser);
       return createdUser;
     }
   }
