@@ -20,7 +20,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(express.static(__dirname));
-const swaggerYaml = YAML.load(path.join(__dirname, './swagger/swagger.yaml'));
+// const swaggerYaml = YAML.load(path.join(__dirname, './swagger/swagger.yaml'));
+const swaggerYaml = YAML.load(path.join(__dirname, '../build/swagger.yaml'));
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerYaml));
 app.use(
   morgan(
