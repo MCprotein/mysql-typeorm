@@ -1,0 +1,42 @@
+openapi: 3.0.3
+info:
+  title: Swagger 연습
+  description: |-
+    MarkDown 지원
+    - MarkDown 지원
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: 아퐈치
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: 외부독스
+  url: http://swagger.io
+servers:
+  - url: http://localhost:4000/
+tags:
+  - name: user
+    description: 회원 기능
+    externalDocs:
+      description: 설명
+      url: http://localhost:4000/api/users
+paths:
+  /users:
+    get:
+      tags:
+        - 'users'
+      summary: 모든 회원 조회
+      description: parameter 없이 모든 회원 조회
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                # $ref: './components/responses/user.yaml#/getUsers'
+                $ref: '#/userres.yaml#/getUsers'
+              examples:
+                # $ref: './components/examples/user.yaml#/getUsers'
+                $ref: '#/userex.yaml#/getUsers'
