@@ -1,5 +1,6 @@
 import { Length } from 'class-validator';
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { User } from './User';
 
 @Entity()
 export class Todo {
@@ -13,4 +14,10 @@ export class Todo {
   @Length(1, 5000)
   @Column({ type: 'varchar', nullable: false })
   content: string;
+
+  @ManyToOne(() => User, (user) => user.todos, {
+    nullable: false,
+    onDelete: 'CASCADE',
+  })
+  user: User;
 }
