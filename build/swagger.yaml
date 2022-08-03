@@ -37,6 +37,63 @@ paths:
               schema:
                 type: object
                 properties:
+                  users:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        isActivated:
+                          type: boolean
+                          description: 계정 활성화 상태
+                        role:
+                          type: string
+                          description: 회원 등급
+                        id:
+                          type: number
+                          description: userId
+                        username:
+                          type: string
+                          description: 유저가 설정한 이름
+                        email:
+                          type: string
+                          description: 유저가 가입에 사용한 이메일 주소
+                        password:
+                          type: string
+                          description: 유저가 설정한 비밀번호
+              examples:
+                - value:
+                    - isActivated: true
+                      role: user
+                      _id: 1
+                      username: 첫번째
+                      email: test@test.com
+                      password: 12345678
+                    - isActivated: true
+                      role: admin
+                      _id: 2
+                      username: 두번째
+                      email: test2@test.com
+                      password: 12345678
+                - $ref: '#/paths/~1users/get/responses/200/content/application~1json/examples/0'
+  '/users/{userId}':
+    get:
+      tags:
+        - users
+      summary: 특정 회원 조회
+      description: userId를 parameter로 받아 회원 조회
+      parameters:
+        - name: userId
+          in: path
+          description: userId
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
                   user:
                     type: object
                     properties:
@@ -59,13 +116,174 @@ paths:
                         type: string
                         description: 유저가 설정한 비밀번호
               examples:
-                allOf:
-                  - value:
-                      user:
-                        isActivated: true
-                        role: user
-                        _id: 1
-                        username: 첫번째
-                        email: test@test.com
-                        password: 12345678
-                  - $ref: '#/paths/~1users/get/responses/200/content/application~1json/examples/allOf/0'
+                value:
+                  - isActivated: true
+                    role: user
+                    _id: 1
+                    username: 첫번째
+                    email: test@test.com
+                    password: 12345678
+    post:
+      tags:
+        - users
+      summary: 회원 가입
+      description: 회원 정보를 받아 회원가입
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - email
+                - password
+                - passwordConfirm
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                passwordConfirm:
+                  type: string
+            examples:
+              value:
+                username: 회원 이름
+                email: 회원 이메일
+                password: 회원 비밀번호
+                passwordConfirm: 회원 비밀번호 확인
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      isActivated:
+                        type: boolean
+                        description: 계정 활성화 상태
+                      role:
+                        type: string
+                        description: 회원 등급
+                      id:
+                        type: number
+                        description: userId
+                      username:
+                        type: string
+                        description: 유저가 설정한 이름
+                      email:
+                        type: string
+                        description: 유저가 가입에 사용한 이메일 주소
+                      password:
+                        type: string
+                        description: 유저가 설정한 비밀번호
+              examples:
+                value:
+                  - isActivated: true
+                    role: user
+                    _id: 1
+                    username: 첫번째
+                    email: test@test.com
+                    password: 12345678
+    put:
+      tags:
+        - users
+      summary: 회원정보 수정
+      description: userId와 회원 정보를 받아 회원정보 수정
+      parameters:
+        - name: userId
+          in: path
+          description: userId
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - email
+                - password
+                - passwordConfirm
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                passwordConfirm:
+                  type: string
+            examples:
+              value:
+                username: 회원 이름
+                email: 회원 이메일
+                password: 회원 비밀번호
+                passwordConfirm: 회원 비밀번호 확인
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      isActivated:
+                        type: boolean
+                        description: 계정 활성화 상태
+                      role:
+                        type: string
+                        description: 회원 등급
+                      id:
+                        type: number
+                        description: userId
+                      username:
+                        type: string
+                        description: 유저가 설정한 이름
+                      email:
+                        type: string
+                        description: 유저가 가입에 사용한 이메일 주소
+                      password:
+                        type: string
+                        description: 유저가 설정한 비밀번호
+              examples:
+                value:
+                  - isActivated: true
+                    role: user
+                    _id: 1
+                    username: 첫번째
+                    email: test@test.com
+                    password: 12345678
+    delete:
+      tags:
+        - users
+      summary: 회원 탈퇴
+      description: userId를 받아 회원탈퇴
+      parameters:
+        - name: userId
+          in: path
+          description: userId
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: 계정 삭제 성공 유무
+              examples:
+                value:
+                  success: true

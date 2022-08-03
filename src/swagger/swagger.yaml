@@ -25,4 +25,13 @@ tags:
 paths:
   /users:
     get:
-      $ref: './paths/user.yaml#/Get'
+      $ref: './paths/user.yaml#/get'
+  /users/{userId}:
+    get:
+      $ref: './paths/user.yaml#/getById'
+    post:
+      $ref: './paths/user.yaml#/post'
+    put:
+      $ref: './paths/user.yaml#/put'
+    delete:
+      $ref: './paths/user.yaml#/delete'

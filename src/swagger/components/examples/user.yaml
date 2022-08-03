@@ -1,9 +1,59 @@
 getUsers:
   value:
-    user:
-      isActivated: true
+    - isActivated: true
       role: user
       _id: 1
       username: 첫번째
       email: test@test.com
       password: 12345678
+    - isActivated: true
+      role: admin
+      _id: 2
+      username: 두번째
+      email: test2@test.com
+      password: 12345678
+
+getUserById:
+  value:
+    - isActivated: true
+      role: user
+      _id: 1
+      username: 첫번째
+      email: test@test.com
+      password: 12345678
+
+post:
+  value:
+    - isActivated: true
+      role: user
+      _id: 1
+      username: 첫번째
+      email: test@test.com
+      password: 12345678
+
+postRequestBody:
+  value:
+    username: 회원 이름
+    email: 회원 이메일
+    password: 회원 비밀번호
+    passwordConfirm: 회원 비밀번호 확인
+
+put:
+  value:
+    - isActivated: true
+      role: user
+      _id: 1
+      username: 첫번째
+      email: test@test.com
+      password: 12345678
+
+putRequestBody:
+  value:
+    username: 회원 이름
+    email: 회원 이메일
+    password: 회원 비밀번호
+    passwordConfirm: 회원 비밀번호 확인
+
+delete:
+  value:
+    success: true

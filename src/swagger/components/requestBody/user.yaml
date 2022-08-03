@@ -1,0 +1,32 @@
+post:
+  type: object
+  required:
+    - username
+    - email
+    - password
+    - passwordConfirm
+  properties:
+    username:
+      type: string
+    email:
+      type: string
+    password:
+      type: string
+    passwordConfirm:
+      type: string
+put:
+  type: object
+  required:
+    - username
+    - email
+    - password
+    - passwordConfirm
+  properties:
+    username:
+      type: string
+    email:
+      type: string
+    password:
+      type: string
+    passwordConfirm:
+      type: string
