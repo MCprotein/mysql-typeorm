@@ -1,7 +1,7 @@
 import { validate } from 'class-validator';
 import { getRepository } from 'typeorm';
-import { User } from '../entity/User';
-import { UserModel, userModel, UserDbInfo } from '../models/user.model';
+import { User } from '../entity';
+import { UserModel, userModel, UserDbInfo } from '../models';
 import { userValidation } from '../utils';
 interface UserInfo extends UserDbInfo {
   passwordConfirm: string;

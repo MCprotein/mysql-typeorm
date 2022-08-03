@@ -1,63 +1,63 @@
 import { NextFunction, Request, Response, Router } from 'express';
-import { userService } from '../../services';
+import { todoService } from '../../services';
 
-const userRouter = Router();
+const todoRouter = Router();
 
-userRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {
+todoRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const users = await userService.getUsers();
-    res.status(200).json(users);
+    const todos = await todoService.gettodos();
+    res.status(200).json(todos);
   } catch (error) {
     next(error);
   }
 });
 
-userRouter.get(
+todoRouter.get(
   '/:id',
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
-      const users = await userService.getUserById(Number(id));
-      res.status(200).json(users);
+      const todos = await todoService.gettodoById(Number(id));
+      res.status(200).json(todos);
     } catch (error) {
       next(error);
     }
   }
 );
 
-userRouter.post(
+todoRouter.post(
   '/',
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const userInfo = req.body;
-      const createdUser = await userService.create(userInfo);
-      res.status(200).json(createdUser);
+      const todoInfo = req.body;
+      const createdtodo = await todoService.create(todoInfo);
+      res.status(200).json(createdtodo);
     } catch (error) {
       next(error);
     }
   }
 );
 
-userRouter.put(
+todoRouter.put(
   '/:id',
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
       const updateInfo = req.body;
-      const updatedUser = await userService.update(Number(id), updateInfo);
-      res.status(200).json(updatedUser);
+      const updatedtodo = await todoService.update(Number(id), updateInfo);
+      res.status(200).json(updatedtodo);
     } catch (error) {
       next(error);
     }
   }
 );
 
-userRouter.delete(
+todoRouter.delete(
   '/:id',
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
-      await userService.delete(Number(id));
+      await todoService.delete(Number(id));
       res.status(200).json({ result: 'success' });
     } catch (error) {
       next(error);
@@ -65,4 +65,4 @@ userRouter.delete(
   }
 );
 
-export { userRouter };
+export { todoRouter };

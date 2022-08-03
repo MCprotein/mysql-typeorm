@@ -1,6 +1,6 @@
 import { validate } from 'class-validator';
 import { getRepository } from 'typeorm';
-import { User } from '../entity/User';
+import { User } from '../entity';
 
 export interface UserDbInfo {
   username: string;
@@ -26,7 +26,6 @@ export class UserModel {
     const newUser = userRepository.create(userInfo);
     const errors = await validate(newUser);
     if (errors.length > 0) {
-      console.log('에러', errors);
       throw new Error('모든 정보를 입력해 주세요.');
     } else {
       const createdUser = await userRepository.save(newUser);
