@@ -287,3 +287,8 @@ paths:
               examples:
                 value:
                   success: true
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
