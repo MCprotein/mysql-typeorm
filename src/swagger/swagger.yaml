@@ -35,3 +35,9 @@ paths:
       $ref: './paths/user.yaml#/put'
     delete:
       $ref: './paths/user.yaml#/delete'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
