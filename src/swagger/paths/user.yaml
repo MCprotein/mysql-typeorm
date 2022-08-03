@@ -1,0 +1,16 @@
+Get:
+  tags:
+    - 'users'
+  summary: 모든 회원 조회
+  description: parameter 없이 모든 회원 조회
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../components/responses/user.yaml#/getUsers'
+          examples:
+            allOf:
+              - $ref: '../components/examples/user.yaml#/getUsers'
+              - $ref: '../components/examples/user.yaml#/getUsers'

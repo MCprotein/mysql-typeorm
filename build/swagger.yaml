@@ -59,11 +59,13 @@ paths:
                         type: string
                         description: 유저가 설정한 비밀번호
               examples:
-                value:
-                  user:
-                    isActivated: true
-                    role: user
-                    _id: 1
-                    username: 첫번째
-                    email: test@test.com
-                    password: 12345678
+                allOf:
+                  - value:
+                      user:
+                        isActivated: true
+                        role: user
+                        _id: 1
+                        username: 첫번째
+                        email: test@test.com
+                        password: 12345678
+                  - $ref: '#/paths/~1users/get/responses/200/content/application~1json/examples/allOf/0'
