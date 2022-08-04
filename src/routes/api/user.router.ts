@@ -8,12 +8,6 @@ const userRouter = Router();
 userRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const users = await userService.getUsers();
-    const user = await getRepository(User)
-      .createQueryBuilder('user')
-      .innerJoinAndSelect('user.todos', 'todo')
-      .where('user.id = :id', { id: 1 })
-      .getOne();
-    console.log(user);
     res.status(200).json(users);
   } catch (error) {
     next(error);

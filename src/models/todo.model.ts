@@ -15,8 +15,12 @@ export class TodoModel {
   }
 
   async findById(id: number): Promise<Todo | null> {
-    const todoRepository = getRepository(Todo);
-    const todo = await todoRepository.findOneBy({ id });
+    const todo = await getRepository(Todo)
+      .createQueryBuilder('todo')
+      .innerJoinAndSelect('todo.user', 'user')
+      .where('todo.id = :id', { id })
+      .orderBy('todo.id', 'ASC')
+      .getOne();
     return todo;
   }
 

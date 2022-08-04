@@ -8,14 +8,6 @@ const todoRouter = Router();
 todoRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const todos = await todoService.gettodos();
-    const todo = await getRepository(Todo)
-      .createQueryBuilder('todo')
-      .innerJoinAndSelect('todo.user', 'user')
-      .where('todo.id = :id', { id: 4 })
-      .orderBy('todo.id', 'ASC')
-      .getOne();
-    console.log(todo);
-    console.log(todo?.user.username);
     res.status(200).json(todos);
   } catch (error) {
     next(error);

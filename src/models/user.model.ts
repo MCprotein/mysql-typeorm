@@ -16,8 +16,11 @@ export class UserModel {
   }
 
   async findById(id: number): Promise<User | null> {
-    const userRepository = getRepository(User);
-    const user = await userRepository.findOneBy({ id });
+    const user = await getRepository(User)
+      .createQueryBuilder('user')
+      .innerJoinAndSelect('user.todos', 'todo')
+      .where('user.id = :id', { id })
+      .getOne();
     return user;
   }
 
